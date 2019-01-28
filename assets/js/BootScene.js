@@ -9,12 +9,12 @@ class BootScene extends Phaser.Scene {
     preload() {
         const progress = this.add.graphics();
 
-        var loadText = this.add.text(250, 200, 'Loading...', { fontSize: '64px', fill: '#000' });
+        var loadText = this.add.text(250, 200, 'Loading...', { fontSize: '64px', fill: '#ffffff' });
 
         // Register a load progress event to show a load bar
         this.load.on('progress', (value) => {
             progress.clear();
-            progress.fillStyle(0x000000, 1);
+            progress.fillStyle(0xffffff, 1);
             progress.fillRect(0, this.sys.game.config.height / 2, this.sys.game.config.width * value, 60);
         });
 
