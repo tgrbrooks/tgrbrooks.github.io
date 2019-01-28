@@ -37,6 +37,8 @@ class GameScene extends Phaser.Scene{
 
       this.level6 = false
 
+      this.cameras.main.fadeIn(500);
+
       //------------------------------------------------------------------------------------
       //                               LEVEL 0: BESTIVAL
       //------------------------------------------------------------------------------------
@@ -162,7 +164,7 @@ class GameScene extends Phaser.Scene{
 
         // Add in snowflake
         items = this.physics.add.group();
-        var item = items.create(290, 140, 'snowflake').setScale(1.5);
+        var item = items.create(290, 100, 'snowflake').setScale(1.5);
 
         // Add in door
         doors = this.physics.add.group();
