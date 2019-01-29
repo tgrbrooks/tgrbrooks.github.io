@@ -59,7 +59,7 @@ class GameScene extends Phaser.Scene{
 
         // Create map from tilemap and tileset
         const map = this.make.tilemap({ key: "map_yr0" });
-        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet");
+        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet_extruded", 20, 20, 1, 2);
         const worldLayer = map.createStaticLayer("World", tileset, 0, 0);
         const bkgLayer = map.createStaticLayer("TileBkg", tileset, 0, 0);
         worldLayer.setCollisionBetween(0, 1400);
@@ -130,7 +130,7 @@ class GameScene extends Phaser.Scene{
 
         // Create map from tiles
         const map = this.make.tilemap({ key: "map_yr1" });
-        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet");
+        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet_extruded", 20, 20, 1, 2);
         const worldLayer = map.createStaticLayer("World", tileset, 0, 0);
         const bkgLayer = map.createStaticLayer("TileBkg", tileset, 0, 0);
         worldLayer.setCollisionBetween(0, 1400);
@@ -200,7 +200,7 @@ class GameScene extends Phaser.Scene{
 
         // Create map from tiles
         const map = this.make.tilemap({ key: "map_yr2" });
-        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet");
+        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet_extruded", 20, 20, 1, 2);
         const worldLayer = map.createStaticLayer("World", tileset, 0, 0);
         const platformLayer = map.createStaticLayer("Platforms", tileset, 0, 0);
         const bkgLayer = map.createStaticLayer("TileBkg", tileset, 0, 0);
@@ -272,7 +272,7 @@ class GameScene extends Phaser.Scene{
 
         // Create map from tiles
         const map = this.make.tilemap({ key: "map_yr3" });
-        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet");
+        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet_extruded", 20, 20, 1, 2);
         const doorLayer = map.createStaticLayer("Door", tileset, 0, 0);
         const bkgLayer = map.createStaticLayer("TileBkg", tileset, 0, 0);
         const windowLayer = map.createStaticLayer("Windows", tileset, 0, 0);
@@ -363,7 +363,7 @@ class GameScene extends Phaser.Scene{
 
         // Create map from tiles
         const map = this.make.tilemap({ key: "map_yr4" });
-        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet");
+        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet_extruded", 20, 20, 1, 2);
         const bkgLayer = map.createStaticLayer("TileBkg", tileset, 0, 0);
         const worldLayer = map.createStaticLayer("World", tileset, 0, 0);
         const windowsLayer = map.createStaticLayer("Windows", tileset, 0, 0);
@@ -431,7 +431,7 @@ class GameScene extends Phaser.Scene{
 
         // Create map from tiles
         const map = this.make.tilemap({ key: "map_yr5" });
-        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet");
+        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet_extruded", 20, 20, 1, 2);
         const bkgLayer = map.createStaticLayer("TileBkg", tileset, 0, 0);
         const windowLayer = map.createStaticLayer("Windows", tileset, 0, 0);
         const worldLayer = map.createStaticLayer("World", tileset, 0, 0);
@@ -527,7 +527,7 @@ class GameScene extends Phaser.Scene{
 
         // Create map from tiles
         const map = this.make.tilemap({ key: "map_yr6" });
-        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet");
+        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet_extruded", 20, 20, 1, 2);
         const bkgLayer = map.createStaticLayer("TileBkg", tileset, 0, 0);
         const windowLayer = map.createStaticLayer("Windows", tileset, 0, 0);
         const obsLayer = map.createStaticLayer("Obstacles", tileset, 0, 0);
@@ -602,7 +602,7 @@ class GameScene extends Phaser.Scene{
 
         // Add map from tileset
         const map = this.make.tilemap({ key: "map_yr6_2" });
-        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet");
+        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet_extruded", 20, 20, 1, 2);
         const bkgLayer = map.createStaticLayer("Pillars", tileset, 0, 0);
         const worldLayer = map.createStaticLayer("World", tileset, 0, 0);
         worldLayer.setCollisionBetween(0, 1400);
@@ -666,7 +666,7 @@ class GameScene extends Phaser.Scene{
 
         // Create map from tiles
         const map = this.make.tilemap({ key: "map_bonus" });
-        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet");
+        const tileset = map.addTilesetImage("bkg_sheet", "bkg_sheet_extruded", 20, 20, 1, 2);
         const worldLayer = map.createStaticLayer("World", tileset, 0, 0);
         worldLayer.setCollisionBetween(0, 1400);
 
@@ -689,6 +689,7 @@ class GameScene extends Phaser.Scene{
         // Add and configure tom
         var tom = toms.create(750, 500, 'tom_base').setScale(1.2);
         tom.setBounce(0.2);
+        tom.setVelocityX(-160);
         tom.setCollideWorldBounds(true);
         // Play beam down animation
         var beam2 = beams.create(750,500,'beam').setScale(2).refreshBody();
@@ -719,7 +720,6 @@ class GameScene extends Phaser.Scene{
 
         // Colliders and overlaps
         this.physics.add.collider(player, worldLayer);
-        this.physics.add.collider(toms, worldLayer);
         this.physics.add.collider(player, collectibles, this.hitToyLydia, null, this);
         this.physics.add.collider(toms, collectibles, this.hitToyTom, null, this);
         this.physics.add.collider(collectibles, worldLayer);
@@ -875,17 +875,29 @@ class GameScene extends Phaser.Scene{
     // Control tom in bonus round
     toms.children.iterate(function (child) {
         // Change direction when colliding
-        if (child.body.velocity.x === 0) {
-            if(child.body.angle<1.5){
-              child.setVelocityX(-120);
-            }
-            else if(child.body.angle>1.5){
-              child.setVelocityX(120);
-            }
+        var nearest_x = 0;
+        var nearest_y = 0;
+        var min_dist = 99999;
+        collectibles.children.iterate(function (item) {
+          var dist = Phaser.Math.Distance.Between(item.x, item.y, child.x, child.y);
+          if(dist < min_dist){
+            min_dist = dist;
+            nearest_x = item.x;
+            nearest_y = item.y;
+          }
+        });
+        if(child.x > (nearest_x+30)){
+            child.setVelocityX(-200);
+        }
+        else if(child.x < (nearest_x-30)){
+            child.setVelocityX(200);
+        }
+        else if (child.x < (nearest_x+10) && child.x > (nearest_x -10)){
+          child.setVelocityX(0);
         }
         // Jump randomly
-        if (Phaser.Math.Between(0,100)==1 && child.body.onFloor()){
-          child.setVelocityY(-250);
+        if (child.body.onFloor() && child.y > (nearest_y+100)){
+          child.setVelocityY(Phaser.Math.Between(-400, -200));
         }
         // Play animations based on movement
         if (child.body.velocity.x > 0) {
@@ -919,13 +931,13 @@ class GameScene extends Phaser.Scene{
         this.cameras.main.setZoom(1 - Math.abs(Math.sin(player.x/400)) * 0.2)
       }
       if(this.tabs>=2){
-        var xcol = Phaser.Math.FloorTo(Math.abs(Math.sin(player.x/1600)) * 255)
-        var ycol = Phaser.Math.FloorTo(Math.abs(Math.sin(player.y/600)) * 255)
-        var col1 = Phaser.Display.Color.RGBToString(0,0,ycol,100,'0x');
-        var col2 = Phaser.Display.Color.RGBToString(xcol,0,0,100,'0x');
-        var col3 = Phaser.Display.Color.RGBToString(0,xcol,0,100,'0x');
-        var col4 = Phaser.Display.Color.RGBToString(ycol,0,0,100,'0x');
-        bkg.setTint(col1,col2,col3,col4);
+        var xcol = Phaser.Math.FloorTo((1+Math.sin(player.x/500)) * 127.5)
+        var xcol2 = Phaser.Math.FloorTo((1+Math.sin((player.x-1500)/500)) * 127.5)
+        var col1 = Phaser.Display.Color.RGBToString(0, 255-xcol, xcol, 100, '0x');
+        var col2 = Phaser.Display.Color.RGBToString(xcol, 0, 255-xcol, 100, '0x');
+        var col3 = Phaser.Display.Color.RGBToString(255-xcol2, xcol2, 0, 100, '0x');
+        var col4 = Phaser.Display.Color.RGBToString(xcol, 255-xcol, xcol, 100, '0x');
+        bkg.setTint(col3, col1, col4, col2);
       }
       if(this.tabs>=3){
         this.cameras.main.rotation = (550 - player.y)/300;
@@ -987,6 +999,7 @@ class GameScene extends Phaser.Scene{
     newToy.setCollideWorldBounds(true);
     newToy.setVelocity(Phaser.Math.Between(-60, 60), 20);
     newToy.allowGravity = false;
+    collectibles.remove(toy);
 
   }
 
@@ -1005,6 +1018,7 @@ class GameScene extends Phaser.Scene{
     newToy.setCollideWorldBounds(true);
     newToy.setVelocity(Phaser.Math.Between(-60, 60), 20);
     newToy.allowGravity = false;
+    collectibles.remove(toy);
 
   }
 

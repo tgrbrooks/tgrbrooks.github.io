@@ -95,6 +95,7 @@ class BootScene extends Phaser.Scene {
 
         // Tile sheets
         this.load.image("bkg_sheet", "assets/images/bkg_sheet.png");
+        this.load.image("bkg_sheet_extruded", "assets/images/bkg_sheet_extruded.png");
 
         // Level tile maps
         this.load.tilemapTiledJSON("map_yr0",   "assets/images/tilemap_year0.json"); 
