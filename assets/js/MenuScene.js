@@ -196,7 +196,7 @@ class MenuScene extends Phaser.Scene{
       if(this.registry.get('Level') == 7){
         // Add background image
         this.add.image(400, 300, 'menu_complete');
-        if(this.registry.get('Score')>=740){
+        if(this.registry.get('Score')>=7400){
           // Add and center main body text
           this.starringText = this.add.bitmapText(20, 400, 'font', "YOU GOT ENOUGH POINTS TO UNLOCK THE BONUS ROUND!\n\nCONTINUE FOR YOUR CHANCE TO WIN A PRIZE", 16, 1);
           this.starringText.setX((800-this.starringText.width)/2.);
@@ -317,7 +317,7 @@ class MenuScene extends Phaser.Scene{
         this.transitionTime -= delta;
         if(this.shouldTransition && this.transitionTime < 0){
             // If bonus round unlocked
-            if(this.registry.get('Level') == 7 && this.registry.get('Score') >= 740){
+            if(this.registry.get('Level') == 7 && this.registry.get('Score') >= 7400){
               this.registry.set('Level', 8);
               this.scene.start('MenuScene');
             }
