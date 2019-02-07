@@ -3,7 +3,7 @@
  "layers":[
         {
          "id":2,
-         "image":"..\/backup\/images\/photo.jpg",
+         "image":"backgrounds\/photo.jpg",
          "name":"Background",
          "opacity":1,
          "type":"imagelayer",

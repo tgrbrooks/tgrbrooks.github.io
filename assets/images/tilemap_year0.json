@@ -3,7 +3,7 @@
  "layers":[
         {
          "id":2,
-         "image":"bestival_1.png",
+         "image":"backgrounds\/bestival.png",
          "name":"Background",
          "opacity":1,
          "type":"imagelayer",

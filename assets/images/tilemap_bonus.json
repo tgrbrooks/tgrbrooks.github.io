@@ -3,7 +3,7 @@
  "layers":[
         {
          "id":2,
-         "image":"bedroom.png",
+         "image":"backgrounds\/bedroom.png",
          "name":"Background",
          "opacity":1,
          "type":"imagelayer",
