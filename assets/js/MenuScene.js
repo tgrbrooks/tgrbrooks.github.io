@@ -323,6 +323,7 @@ class MenuScene extends Phaser.Scene{
             }
             // Restart game
             else if(this.registry.get('Level') == 7 || this.registry.get('Level') == 9 || this.registry.get('Level') == 10){
+              this.registry.set('Score', 0);
               this.registry.set('Level', -1);
               this.scene.start('MenuScene');
             }
