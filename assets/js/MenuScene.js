@@ -244,7 +244,7 @@ class MenuScene extends Phaser.Scene{
       if(this.registry.get('Level') == 9){
         // Add background image
         this.add.image(400, 300, 'menu_bonus');
-        this.starringText = this.add.bitmapText(20, 140, 'font', "YOU BEAT TOM!\n\nYOU HAVE FINALLY PROVEN THAT YOU ARE THE BEST\n\nIN BED.\n\nSEND CODE 1MH0RNY TO TOM ON WHATSAPP TO\n\nCLAIM YOUR PRIZE!", 16, 1);
+        this.starringText = this.add.bitmapText(20, 140, 'font', "YOU BEAT TOM!\n\nYOU HAVE FINALLY PROVEN THAT YOU ARE THE BEST\n\nIN BED.\n\nSEND CODE TOMSDABEST TO TOM ON WHATSAPP TO\n\nCLAIM YOUR PRIZE!", 16, 1);
         this.starringText.setX((800-this.starringText.width)/2.);
         // Add images
         this.physics.add.staticGroup().create(300, 420, 'lydia_nc').setScale(2.5).refreshBody();
