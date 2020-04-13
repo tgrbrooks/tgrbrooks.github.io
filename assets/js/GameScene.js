@@ -761,7 +761,11 @@ class GameScene extends Phaser.Scene{
     }
 
     // Level 0: if player has had more than 3 beers without sheewee = game over
-    if (this.beersDrunk > 3){
+    var beerLimit = 3;
+    if(this.registry.get('PlayTom')){
+      beerLimit = 10;
+    }
+    if (this.beersDrunk > beerLimit){
       this.beersDrunk = 0;
       cursors.left.reset();
       cursors.right.reset();
@@ -780,24 +784,33 @@ class GameScene extends Phaser.Scene{
     if(this.registry.get('Level')==8){
       suffix = '_base';
     }
+    var speed = 160;
+    var jump = 250;
+    var prefix = '';
+    // Change animations if in bonus round
+    if(this.registry.get('PlayTom')){
+      prefix = 'tom_';
+      speed = 240;
+      jump = 300;
+    }
     // Moving to the left
     if (cursors.left.isDown){
-        player.setVelocityX(-160*this.speedMult);
-        player.anims.play('left'+suffix, true);
+        player.setVelocityX(-speed*this.speedMult);
+        player.anims.play(prefix+'left'+suffix, true);
     }
     // Moving to the right
     else if (cursors.right.isDown){
-        player.setVelocityX(160*this.speedMult);
-        player.anims.play('right'+suffix, true);
+        player.setVelocityX(speed*this.speedMult);
+        player.anims.play(prefix+'right'+suffix, true);
     }
     // Stationary
     else{
         player.setVelocityX(0);
-        player.anims.play('turn'+suffix);
+        player.anims.play(prefix+'turn'+suffix);
     }
     // Jumping
     if (cursors.up.isDown && player.body.onFloor()){
-        player.setVelocityY(-250);
+        player.setVelocityY(-jump);
     }
 
     // Make camera jump to 800x600 window with player
@@ -841,6 +854,11 @@ class GameScene extends Phaser.Scene{
       fol_right = 'tom_right';
       fol_left = 'tom_left';
       fol_turn = 'tom_turn';
+      if(this.registry.get('PlayTom')){
+        fol_right = 'right';
+        fol_left = 'left';
+        fol_turn = 'turn';
+      }
       // Tom only follows if lydia on the ground
       if(player.y < 500){
         follow = false;

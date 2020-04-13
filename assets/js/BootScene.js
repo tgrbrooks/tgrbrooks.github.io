@@ -112,10 +112,11 @@ class BootScene extends Phaser.Scene {
     }
 
     create() {
-      this.registry.set('Level', -1);
+      this.registry.set('Level', 8);
       this.registry.set('HasItem', false);
       this.registry.set('Score', 0);
       this.registry.set('StartGame', false);
+      this.registry.set('PlayTom', false);
     }
 
   makeAnimations() {
