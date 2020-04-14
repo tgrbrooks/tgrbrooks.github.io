@@ -25,7 +25,7 @@ class GameOverScene extends Phaser.Scene{
 
       if(this.registry.get('Level') == 0){
         // Add and center failure message
-        this.failText = this.add.bitmapText(20, 240, 'font', 'OH DEAR! YOU DRANK ONE TOO MANY BEERS...\n\nWITHOUT YOUR SHEWEE ON YOU,\n\nYOU WET YOURSELF IN FRONT OF EVERYONE.\n\nHOW EMBARRASING!', 16, 1);
+        this.failText = this.add.bitmapText(20, 240, 'font', 'OH DEAR! YOU DRANK ONE TOO MANY BEERS...\n\nWITHOUT THE PORTALOO KEY\n\nYOU WET YOURSELF IN FRONT OF EVERYONE.\n\nHOW EMBARRASING!', 16, 1);
         this.failText.setX((800-this.failText.width)/2.)
       }
 
@@ -65,7 +65,7 @@ class GameOverScene extends Phaser.Scene{
 
       if(this.registry.get('Level') == 4){
         // Add and center failure message
-        this.failText = this.add.bitmapText(20, 240, 'font', 'SHIIIT! YOU MISSED THE TRAIN.\n\nYOU SHOULD HAVE RUN DOWN THE MOUNTAIN FASTER!\n\nLOOKS LIKE YOU ARE STUCK IN FORT WILLIAM FOREVER.', 16, 1);
+        this.failText = this.add.bitmapText(20, 240, 'font', 'AHHRGH! YOU MISSED THE TRAIN.\n\nYOU SHOULD HAVE RUN DOWN THE MOUNTAIN FASTER!\n\nLOOKS LIKE YOU ARE STUCK IN FORT WILLIAM FOREVER.', 16, 1);
         this.failText.setX((800-this.failText.width)/2.)
       } 
 
@@ -85,7 +85,7 @@ class GameOverScene extends Phaser.Scene{
 
       if(this.registry.get('Level') == 6){
         // Add and center failure message
-        this.failText = this.add.bitmapText(20, 240, 'font', 'YOU GOT WHIPPED!\n\nIT HURT BUT YOU KINDA LIKED IT...\n\nYOU HAVE DECIDED TO LIVE OUT THE REST OF YOUR\n\nDAYS IN A BDSM CLUB AND LEAVE TOM.', 16, 1);
+        this.failText = this.add.bitmapText(20, 240, 'font', "YOU GOT MUGGED!\n\nYOU LOST YOUR PLANE TICKETS...\n\nNOW YOU WON'T BE ABLE TO GET TO TOM.", 16, 1);
         this.failText.setX((800-this.failText.width)/2.)
       } 
       

@@ -55,11 +55,11 @@ class BootScene extends Phaser.Scene {
         // Game objects
         this.load.image('door',         'assets/images/items/door.png');
         this.load.image('train',        'assets/images/items/train.png');
-        this.load.image('acid',         'assets/images/items/acid.png');
-        this.load.image('baggy',        'assets/images/items/baggy.png');
+        this.load.image('gas',          'assets/images/items/gas.png');
+        this.load.image('coffee',       'assets/images/items/coffee.png');
         this.load.image('leggings',     'assets/images/items/leggings.png');
         this.load.image('algae',        'assets/images/items/algae.png');
-        this.load.image('shewee',       'assets/images/items/shewee.png');
+        this.load.image('key',          'assets/images/items/silverkey.png');
         this.load.image('snowflake',    'assets/images/items/snowflake.png');
         this.load.image('kindle',       'assets/images/items/kindle.png');
         this.load.image('passed_exam',  'assets/images/items/passed_exam.png');
@@ -70,12 +70,9 @@ class BootScene extends Phaser.Scene {
         this.load.image('tickets',      'assets/images/items/tickets.png');
         this.load.image('beer',         'assets/images/items/cerveza.png');
         this.load.image('survival_kit', 'assets/images/items/survival_kit.png');
-        this.load.image('massager',     'assets/images/items/massager.png');
-        this.load.image('plug',         'assets/images/items/plug.png');
-        this.load.image('plug_2',       'assets/images/items/plug_2.png');
-        this.load.image('rabbit',       'assets/images/items/rabbit.png');
-        this.load.image('lydia_nc',     'assets/images/items/lydia_nc.png');
-        this.load.image('tom_nc',       'assets/images/items/tom_nc.png');
+        this.load.image('dream',        'assets/images/items/dream.png');
+        this.load.image('lydia_single', 'assets/images/items/lydia_single.png');
+        this.load.image('tom_single',   'assets/images/items/tom_single.png');
         this.load.image('trophy',       'assets/images/items/trophy.png');
         this.load.image('plane',        'assets/images/items/plane.png');
 
@@ -84,7 +81,7 @@ class BootScene extends Phaser.Scene {
         this.load.spritesheet('lydia_base', 'assets/images/spritesheets/lydia_base.png',    { frameWidth: 36, frameHeight: 64 });
         this.load.spritesheet('tom',        'assets/images/spritesheets/tom_clothed.png',   { frameWidth: 36, frameHeight: 64 });
         this.load.spritesheet('tom_base',   'assets/images/spritesheets/tom_base.png',      { frameWidth: 36, frameHeight: 64 });
-        this.load.spritesheet('rom',        'assets/images/spritesheets/rom.png',           { frameWidth: 44, frameHeight: 64 });
+        this.load.spritesheet('robber',     'assets/images/spritesheets/robber.png',        { frameWidth: 36, frameHeight: 64 });
         this.load.spritesheet('beam',       'assets/images/spritesheets/beam_sprite.png',   { frameWidth: 64, frameHeight: 81 });
         this.load.spritesheet('flu',        'assets/images/spritesheets/flu_sprite.png',    { frameWidth: 57, frameHeight: 34 });
         this.load.spritesheet('sunny',      'assets/images/spritesheets/sunny.png',         { frameWidth: 160, frameHeight: 256 });
@@ -112,7 +109,7 @@ class BootScene extends Phaser.Scene {
     }
 
     create() {
-      this.registry.set('Level', 8);
+      this.registry.set('Level', 6);
       this.registry.set('HasItem', false);
       this.registry.set('Score', 0);
       this.registry.set('StartGame', false);
@@ -199,19 +196,19 @@ class BootScene extends Phaser.Scene {
 
     // Rom animations
     this.anims.create({
-        key: 'rom_left',
-        frames: this.anims.generateFrameNumbers('rom', { start: 0, end: 3 }),
+        key: 'robber_left',
+        frames: this.anims.generateFrameNumbers('robber', { start: 0, end: 3 }),
         frameRate: 7,
         repeat: -1
     });
     this.anims.create({
-        key: 'rom_turn',
-        frames: [ { key: 'rom', frame: 4 } ],
+        key: 'robber_turn',
+        frames: [ { key: 'robber', frame: 4 } ],
         frameRate: 20
     });
     this.anims.create({
-        key: 'rom_right',
-        frames: this.anims.generateFrameNumbers('rom', { start: 5, end: 8 }),
+        key: 'robber_right',
+        frames: this.anims.generateFrameNumbers('robber', { start: 5, end: 8 }),
         frameRate: 7,
         repeat: -1
     });

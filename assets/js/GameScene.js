@@ -94,9 +94,9 @@ class GameScene extends Phaser.Scene{
             child.setBounceY(Phaser.Math.FloatBetween(0.1, 0.3));
         });
 
-        // Add in shewee
+        // Add in key
         items = this.physics.add.group();
-        var item = items.create(525, 730, 'shewee');
+        var item = items.create(525, 730, 'key').setScale(0.5);
 
         // Add in door
         doors = this.physics.add.group();
@@ -151,10 +151,10 @@ class GameScene extends Phaser.Scene{
 
         // Add in acid collectibles
         collectibles = this.physics.add.group();
-        collectibles.create(100, 350, 'acid').setScale(0.7);
-        collectibles.create(1000, 350, 'acid').setScale(0.7);
-        collectibles.create(1400, 350, 'acid').setScale(0.7);
-        collectibles.create(150, 150, 'acid').setScale(0.7);
+        collectibles.create(100, 350, 'gas').setScale(0.5);
+        collectibles.create(1000, 350, 'gas').setScale(0.5);
+        collectibles.create(1400, 350, 'gas').setScale(0.5);
+        collectibles.create(150, 150, 'gas').setScale(0.5);
 
         // Add in freshers flu enemies
         enemies.create(280, 550, 'flu');
@@ -221,12 +221,12 @@ class GameScene extends Phaser.Scene{
         var beam = beams.create(60,500,'beam').setScale(2).refreshBody();
         beam.anims.play('beam_down', true);
 
-        // Add in baggy collectibles
+        // Add in coffee collectibles
         collectibles = this.physics.add.group();
-        collectibles.create(100, 350, 'baggy').setScale(0.7);
-        collectibles.create(670, 150, 'baggy').setScale(0.7);
-        collectibles.create(1280, 150, 'baggy').setScale(0.7);
-        collectibles.create(1520, 350, 'baggy').setScale(0.7);
+        collectibles.create(100, 350, 'coffee').setScale(1);
+        collectibles.create(670, 150, 'coffee').setScale(1);
+        collectibles.create(1280, 150, 'coffee').setScale(1);
+        collectibles.create(1520, 350, 'coffee').setScale(1);
 
         // Add in sunny enemy
         var enemy = enemies.create(800, 300, 'sunny').setScale(1.5);
@@ -559,7 +559,7 @@ class GameScene extends Phaser.Scene{
         collectibles.create(2560, 400, 'algae');
 
         // Add in follower
-        var follower = followers.create(40, 500, 'romanian').setScale(1.1);
+        var follower = followers.create(40, 500, 'robber').setScale(1.1);
 
         // Add in tickets item
         items = this.physics.add.group();
@@ -615,7 +615,7 @@ class GameScene extends Phaser.Scene{
 
         // Add in images of all collected items
         items = this.physics.add.group();
-        var item = items.create(170, 500, 'shewee');
+        var item = items.create(170, 500, 'key').setScale(0.5);
         var item = items.create(250, 500, 'snowflake');
         var item = items.create(330, 500, 'kindle').setScale(0.75);
         var item = items.create(410, 500, 'diploma').setScale(0.5);
@@ -702,14 +702,14 @@ class GameScene extends Phaser.Scene{
 
         // Add in toy collectibles
         collectibles = this.physics.add.group();
-        var massager = collectibles.create(Phaser.Math.Between(50, 750), 100, 'massager');
-        massager.setData('name', 'massager');
-        var plug = collectibles.create(Phaser.Math.Between(50, 750), 100, 'plug');
-        plug.setData('name', 'plug');
-        var plug2 = collectibles.create(Phaser.Math.Between(50, 750), 100, 'plug_2');
-        plug2.setData('name', 'plug_2');
-        var rabbit = collectibles.create(Phaser.Math.Between(50, 750), 100, 'rabbit');
-        rabbit.setData('name', 'rabbit');
+        var dream1 = collectibles.create(Phaser.Math.Between(50, 750), 100, 'dream');
+        dream1.setData('name', 'dream');
+        var dream2 = collectibles.create(Phaser.Math.Between(50, 750), 100, 'dream');
+        dream2.setData('name', 'dream');
+        var dream3 = collectibles.create(Phaser.Math.Between(50, 750), 100, 'dream');
+        dream3.setData('name', 'dream');
+        var dream4 = collectibles.create(Phaser.Math.Between(50, 750), 100, 'dream');
+        dream4.setData('name', 'dream');
         // Make them bounce around
         collectibles.children.iterate(function (child) {
           child.setBounce(1);
@@ -846,9 +846,9 @@ class GameScene extends Phaser.Scene{
     });
 
     // Control follower movements
-    var fol_right = 'rom_right';
-    var fol_left = 'rom_left';
-    var fol_turn = 'rom_turn';
+    var fol_right = 'robber_right';
+    var fol_left = 'robber_left';
+    var fol_turn = 'robber_turn';
     var follow = true;
     if(this.registry.get('Level')==7){
       fol_right = 'tom_right';
@@ -979,7 +979,7 @@ class GameScene extends Phaser.Scene{
     score = this.registry.get('Score') + this.levelScore;
     scoreText.setText('Score: ' + score);
 
-    // If lydia doesn't have the shewee then add to number of beers drunk
+    // If lydia doesn't have the key then add to number of beers drunk
     if(!this.registry.get('HasItem') && this.registry.get('Level')==0){
       this.beersDrunk += 1;
     }
@@ -989,7 +989,7 @@ class GameScene extends Phaser.Scene{
         var item = items.create(1000, 100, 'diploma');
     }
 
-    // Make camera flash if baggy picked up
+    // Make camera flash if coffee picked up
     if (this.registry.get('Level')==2){
       this.cameras.main.flash();
       this.speedMult += 0.3;
