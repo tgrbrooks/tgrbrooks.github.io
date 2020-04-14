@@ -1,0 +1,3 @@
+[submodule "AdventureGame"]
+	path = AdventureGame
+	url = https://github.com/tgrbrooks/AdventureGame.git
