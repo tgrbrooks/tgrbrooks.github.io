@@ -1,0 +1,8 @@
+- name: About
+  link: /about
+- name: Games
+  link: /games
+- name: Projects
+  link: /projects
+- name: CV
+  link: /wiki

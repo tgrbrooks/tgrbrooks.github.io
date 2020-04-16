@@ -1,9 +1,9 @@
-<footer class="site-footer h-card">
+<footer class="site-footer h-card bg-dark">
   <data class="u-url" href="{{ "/" | relative_url }}"></data>
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
+    <!--<h2 class="footer-heading">{{ site.title | escape }}</h2>-->
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
@@ -21,15 +21,17 @@
         </ul>
       </div>
 
-      <div class="footer-col footer-col-2">
+      <div class="footer-col footer-col-2 text-white-25">
         {%- include social.html -%}
       </div>
 
-      <div class="footer-col footer-col-3">
+      <div class="footer-col footer-col-3 text-white-25">
         <p>{{- site.description | escape -}}</p>
       </div>
     </div>
 
   </div>
+
+  <h2 class="footer-ending text-white">Built with Jekyll and Bootstrap, hosted on GitHub</h2>
 
 </footer>

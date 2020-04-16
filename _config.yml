@@ -30,7 +30,6 @@ logo: /assets/favicon.png
 # Build settings
 theme: minima
 plugins:
-  - jekyll-feed
   - jekyll-seo-tag
 
 # Theme

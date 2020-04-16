@@ -116,7 +116,7 @@
  */
 .site-footer {
   border-top: 1px solid $grey-color-light;
-  padding: $spacing-unit 0;
+  padding: $spacing-unit/4 0;
 }
 
 .footer-heading {
@@ -139,7 +139,7 @@
 
 .footer-col {
   float: left;
-  margin-bottom: $spacing-unit / 2;
+  margin-bottom: $spacing-unit / 4;
   padding-left: $spacing-unit / 2;
 }
 
@@ -177,6 +177,12 @@
     width: -webkit-calc(100% - (#{$spacing-unit} / 2));
     width:         calc(100% - (#{$spacing-unit} / 2));
   }
+}
+
+.footer-ending {
+  @include relative-font-size(0.7);
+  margin-bottom: $spacing-unit / 2;
+  text-align: center
 }
 
 
