@@ -4,15 +4,13 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Hi! I'm Tom and this is my website.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+I'm a soon to be finished PhD student at the University of Sheffield (hence why I'm procrastinating and building a website) working on simulations of neutrino interactions in liquid argon time projection chambers.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+I wanted a website as a centralised place to store things that interest me and might interest others and to hopefully avoid ever having to use LinkedIn when looking for jobs.
 
+So if you are a prospective employer, head over to the [CV]({% link cv.markdown %}) page for an up to date overview of my experience and skills.
 
-[jekyll-organization]: https://github.com/jekyll
+For anyone else who's managed to find themself here feel free to browse the [projects]({% link projects.markdown %}) or [games]({% link games.markdown %}) pages for information on some of the things I've been working on in my spare time. You could also head over to my personal [wiki]({% link wiki/wiki.html %}) for a collection of tips and tricks I've accumulated from working with various hardware and software over time.
+
