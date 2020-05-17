@@ -1,0 +1,43 @@
+<script src="//unpkg.com/d3"></script>
+<script src="//unpkg.com/sunburst-chart"></script>
+
+<body>
+  <article class="chart-background">
+    <div class="chart">
+      <div class="chart-mask">Skills</div>
+    </div>
+  </article>
+
+  <script>
+
+    // Set the colour scheme as grayscale
+    const color = d3.scaleOrdinal(["#cfcfcf","#b1b1b1","#8e8e8e","#777777","#646464","#464646"]);
+
+    // Map between integer skill levels and strings
+    let skillMap = new Map();
+    skillMap.set(1, 'Basic');
+    skillMap.set(2, 'Intermediate');
+    skillMap.set(3, 'Advanced');
+    skillMap.set(4, 'Expert');
+
+    // Create the skill tree sunburst by clicking on the mask
+    document.querySelector('.chart-mask').onclick = function(){
+
+      fetch('/assets/skills.json').then(res => res.json()).then(data => {
+        Sunburst()
+          .data(data)
+          .label('name')
+          .size(d => d.skill)
+          .maxLevels(2)
+          .color((d, parent) => color(parent ? parent.data.name : null))
+          .excludeRoot(true)
+          .tooltipTitle(d => d.name)
+          .tooltipContent(d => d.base ? `` : `Level: ${skillMap.get(d.skill)}`)
+          (document.querySelector('.chart'));
+      });
+      // Turn of ability to click element
+      document.querySelector('.chart-mask').style.pointerEvents = "none";
+    };
+    
+  </script>
+</body>

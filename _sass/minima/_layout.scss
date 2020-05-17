@@ -269,10 +269,10 @@
   }
 }
 
+
 /**
  * Home page animation
  */
-
 
 .animation-background {
   position: relative;
@@ -285,7 +285,6 @@
   background-color: #FFF;
 }
 
-
 .stagger-visualizer {
   display: flex;
   flex-wrap: wrap;
@@ -296,9 +295,243 @@
 }
 
 .stagger-visualizer div {
-  /*position: absolute;*/
   width: min(.8rem, 1.5vw);
   height: min(.8rem, 1.5vw);
   border: 2px solid #343a40;
   background-color: #343a40;
+}
+
+
+/**
+ * Timeline background
+ */
+
+// Div for entire timeline, setting the size
+.timeline{
+  position: relative;
+  width: 100%;
+  height: 2900px;
+  background-color: #FFF;
+}
+
+// Wrapper for the lines and events
+.timeline-background {
+  position: absolute;
+  float: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.timeline-title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  color: #FFF;
+  font-weight: 800;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: center;
+  background-color: #343a40;
+  border-radius: 50%;
+}
+
+.timeline-line {
+  background: #343a40;
+  width: 10px;
+  height: 400px;
+  float: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.line7 {
+  height: 340px;
+}
+
+.timeline-event {
+  position: relative;
+  background: #FFF;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: 5px solid #343a40;
+  width: 20px;
+  height: 20px;
+  float: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.event-mask {
+  position: absolute;
+  background: #FFF;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// Wrapper for the dates and labels
+.timeline-text {
+  position: absolute;
+  width: 100%;
+  float: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+  
+.timeline-label {
+  position: absolute;
+  width: 22%;
+  color: #343a40;
+  font-weight: 800;
+  font-size: 2.5vw;
+  right: 0px;
+  text-align: right;
+}
+.label1 {
+  top: 380px;
+}
+.label2 {
+  top: 800px;
+}
+.label3 {
+  top: 1220px;
+}
+.label4 {
+  top: 1640px;
+}
+.label5 {
+  top: 2060px;
+}
+.label6 {
+  top: 2480px;
+}
+
+.timeline-date {
+  position: absolute;
+  color: #343a40;
+  width: 22%;
+  font-weight: 800;
+  font-size: 2.5vw;
+  left: 0px;
+  text-align: left;
+}
+.date1 {
+  top: 380px;
+}
+.date2 {
+  top: 800px;
+}
+.date3 {
+  top: 1220px;
+}
+.date4 {
+  top: 1640px;
+}
+.date5 {
+  top: 2060px;
+}
+.date6 {
+  top: 2480px;
+}
+
+
+/**
+ * Skill tree sunburst
+ */
+
+.chart-background {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  //background-color: #FFF;
+  width: 100%;
+  height: 725px;
+}
+
+.chart {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-mask {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  color: #FFF;
+  font-weight: 800;
+  font-size: 2em;
+  background-color: #343a40;
+  border-radius: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+// Probably a naughty thing to do but hey-ho
+// Override the css imported with the sunburst plot
+.sunburst-viz .slice path {
+  cursor: pointer;
+}
+
+.sunburst-viz text {
+  font-family: unset !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  dominant-baseline: middle;
+  text-anchor: middle;
+  pointer-events: none;
+  fill: #222;
+}
+
+.sunburst-viz text .text-contour {
+  fill: none;
+  stroke: white;
+  stroke-width: 0 !important;
+  stroke-linejoin: 'round';
+}
+
+.sunburst-viz .main-arc {
+  stroke: white;
+  stroke-width: 1px;
+  transition: opacity .4s;
+}
+
+.sunburst-viz .main-arc:hover {
+  opacity: 0.85;
+  transition: opacity .05s;
+}
+
+.sunburst-viz .hidden-arc {
+  fill: none;
+}
+
+.sunburst-tooltip {
+  display: none;
+  position: absolute;
+  max-width: 320px;
+  white-space: nowrap;
+  padding: 5px;
+  border-radius: 3px;
+  font: 12px sans-serif;
+  color: #eee;
+  background: rgba(0,0,0,0.65);
+  pointer-events: none;
+}
+
+.sunburst-tooltip .tooltip-title {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
 }
