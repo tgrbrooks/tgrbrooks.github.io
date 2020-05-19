@@ -10,7 +10,7 @@ Below are some extra details on some of the more interesting ones.
 
 <div class="card-deck">
   <div class="card bg-light mb-3">
-    <img src="/assets/projects/algaeplotter.png" class="card-img-top" alt="...">
+    <img src="/assets/projects/algae.png" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Algae Plotter</h5>
       <p class="card-text">A GUI based tool for plotting algae growth curves and measuring growth rates.</p>
@@ -20,7 +20,7 @@ Below are some extra details on some of the more interesting ones.
       <a href="#" class="btn btn-primary text-white">Docs</a>
     </div>
     <div class="card-footer">
-      <small class="text-muted">In maintenance phase</small>
+      <small class="text-muted">Maintained</small>
     </div>
   </div>
   <div class="card bg-light mb-3">
@@ -33,27 +33,26 @@ Below are some extra details on some of the more interesting ones.
       <a href="#" target="_blank" class="btn btn-primary text-white">Docs</a>
     </div>
     <div class="card-footer">
-      <small class="text-muted">In maintenance phase</small>
+      <small class="text-muted">Maintained</small>
     </div>
   </div>
 </div>
 
 <div class="card-deck">
   <div class="card bg-light mb-3">
-    <img src="/assets/algae_logo.png" class="card-img-top" alt="...">
+    <img src="/assets/projects/phdorg.png" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">PhD Organiser</h5>
       <p class="card-text">A terminal based calendar/organiser for PhD students with no external dependencies.</p>
       <p class="card-text">Written for a short masters project on C++ object orientated programming.</p>
       <a href="https://github.com/tgrbrooks/PhDOrganiser" target="_blank" class="btn btn-primary text-white">GitHub</a>
-      <a href="#" target="_blank" class="btn btn-primary text-white">Docs</a>
     </div>
     <div class="card-footer">
-      <small class="text-muted">No longer supported</small>
+      <small class="text-muted">Maintained</small>
     </div>
   </div>
   <div class="card bg-light mb-3">
-    <img src="/assets/algae_logo.png" class="card-img-top" alt="...">
+    <img src="/assets/projects/roboai.png" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">RoboAI</h5>
       <p class="card-text">Audio, video and accelerometer processing on the Raspberry Pi.</p>
@@ -69,26 +68,24 @@ Below are some extra details on some of the more interesting ones.
 
 <div class="card-deck">
   <div class="card bg-light mb-3">
-    <img src="/assets/algae_logo.png" class="card-img-top" alt="...">
+    <img src="/assets/projects/website.png" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">tgrbrooks.github.io</h5>
       <p class="card-text">This very website!</p>
       <p class="card-text">A page for storing all things useful and testing out new web development techniques.</p>
       <a href="https://github.com/tgrbrooks/tgrbrooks.github.io" target="_blank" class="btn btn-primary text-white">GitHub</a>
-      <a href="#" target="_blank" class="btn btn-primary text-white">Docs</a>
     </div>
     <div class="card-footer">
       <small class="text-muted">In development</small>
     </div>
   </div>
   <div class="card bg-light mb-3">
-    <img src="/assets/algae_logo.png" class="card-img-top" alt="...">
+    <img src="/assets/projects/racepoints.png" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">SLSC Race Points</h5>
       <p class="card-text">An application for recording swimming race times and storing in an SQLite database.</p>
       <p class="card-text">Made a long long time ago when I was just discovering the world of coding.</p>
       <a href="https://github.com/tgrbrooks/SLSCRacePoints" target="_blank" class="btn btn-primary text-white">GitHub</a>
-      <a href="#" target="_blank" class="btn btn-primary text-white">Docs</a>
     </div>
     <div class="card-footer">
       <small class="text-muted">No longer supported</small>
