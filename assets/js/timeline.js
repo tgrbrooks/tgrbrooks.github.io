@@ -11,7 +11,8 @@ for (let i = 1; i <= 6; i++){
     easing: 'easeInOutSine',
     direction: 'normal',
     zIndex: 10,
-    delay: anime.stagger(1),
+    //delay: anime.stagger(1),
+    //duration: 10,
     loop: false,
     autoplay: false,
     // Play in reverse when clicked twice to hide
@@ -23,7 +24,8 @@ for (let i = 1; i <= 6; i++){
   .add({
     targets: mask_element,
     backgroundColor: "#343a40",
-    delay: anime.stagger(1)
+    //delay: anime.stagger(1)
+    duration: 400
   })
   // Expand the event window outwards, remove the left and right borders
   .add({
@@ -34,14 +36,16 @@ for (let i = 1; i <= 6; i++){
     borderBottomWidth: ['5px', '1px'],
     borderLeftWidth: ['5px', '0px'],
     borderRightWidth: ['5px', '0px'],
-    delay: anime.stagger(10)
+    //delay: anime.stagger(10)
+    duration: 700
   })
   // Hide the mask that was covering the background image
   .add({
     targets: mask_element,
     backgroundColor: "#FFF",
     opacity: 0,
-    delay: anime.stagger(1)
+    //delay: anime.stagger(1)
+    duration: 400
   })
 
   // Play the animation when the event is clicked

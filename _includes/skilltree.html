@@ -11,7 +11,8 @@
   <script>
 
     // Set the colour scheme as grayscale
-    const color = d3.scaleOrdinal(["#cfcfcf","#b1b1b1","#8e8e8e","#777777","#646464","#464646"]);
+    //const color = d3.scaleOrdinal(["#cfcfcf","#b1b1b1","#8e8e8e","#777777","#646464","#464646"]);
+    const color = d3.scaleOrdinal(d3.schemePaired);
 
     // Map between integer skill levels and strings
     let skillMap = new Map();
@@ -28,7 +29,7 @@
           .data(data)
           .label('name')
           .size(d => d.skill)
-          .maxLevels(2)
+          .maxLevels(5)
           .color((d, parent) => color(parent ? parent.data.name : null))
           .excludeRoot(true)
           .tooltipTitle(d => d.name)
