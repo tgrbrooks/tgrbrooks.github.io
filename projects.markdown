@@ -17,7 +17,7 @@ Below are some extra details on some of the more interesting ones.
       <p class="card-text">Written in python with PyQt5 and matplotlib.</p>
       <a href="https://www.dropbox.com/sh/pa48a3jmwdhks1o/AACyNKSP8AvDUff5IjPBasApa?dl=0" target="_blank" class="btn btn-primary text-white">DMG image</a>
       <a href="https://github.com/tgrbrooks/AlgaePlotter" target="_blank" class="btn btn-primary text-white">GitHub</a>
-      <a href="#" class="btn btn-primary text-white">Docs</a>
+      <a href="https://algaeplotter.readthedocs.io/en/latest/" class="btn btn-primary text-white">Docs</a>
     </div>
     <div class="card-footer">
       <small class="text-muted">Maintained</small>
