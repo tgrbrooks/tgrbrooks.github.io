@@ -728,3 +728,50 @@ var letter_80 = ["@",
 "0","1","1","1","1","0",
 "0","0","0","0","0","0"];
 var letters = [letter_0,letter_1,letter_2,letter_3,letter_4,letter_5,letter_6,letter_7,letter_8,letter_9,letter_10,letter_11,letter_12,letter_13,letter_14,letter_15,letter_16,letter_17,letter_18,letter_19,letter_20,letter_21,letter_22,letter_23,letter_24,letter_25,letter_26,letter_27,letter_28,letter_29,letter_30,letter_31,letter_32,letter_33,letter_34,letter_35,letter_36,letter_37,letter_38,letter_39,letter_40,letter_41,letter_42,letter_43,letter_44,letter_45,letter_46,letter_47,letter_48,letter_49,letter_50,letter_51,letter_52,letter_53,letter_54,letter_55,letter_56,letter_57,letter_58,letter_59,letter_60,letter_61,letter_62,letter_63,letter_64,letter_65,letter_66,letter_67,letter_68,letter_69,letter_70,letter_71,letter_72,letter_73,letter_74,letter_75,letter_76,letter_77,letter_78,letter_79,letter_80];
+
+// Convert a phrase to an array of bools
+function phraseToArray(phrase, col, row){
+  // Type a phrase (less than 8 characters)
+  var letter_array = [];
+
+  // Get an array of the letters in pbgrid format from letters.js
+  for( var i = 0; i < phrase.length; i++ ){
+    for( var j = 0; j < letters.length; j++ ){
+      if( phrase.charAt(i) == letters[j][0] ){
+        var letter_copy = [];
+        for( var k = 1; k < letters[j].length; k++ ){
+          letter_copy.push(letters[j][k])
+        }
+        letter_array.push(letter_copy);
+      }
+    }
+  }
+
+  // Work out the buffer from top and sides
+  var row_buffer = Math.max(Math.floor((row - 8)/2), 0);
+  var phrase_size = 6*phrase.length;
+  var col_buffer = Math.max(Math.floor((col - phrase_size)/2), 0);
+
+  // Put the letter arrays into a word array the size of the pbgrid
+  var text_array = [];
+  for( var i = 0; i < row; i++){
+    var i_b = i - row_buffer;
+    for( var j = 0; j < col; j++){
+      var j_b = j - col_buffer;
+      var letter_index = Math.floor(j_b/6);
+      var index = 6*i_b + j_b - 6*letter_index;
+      if( i_b < 0 || i_b > 7 || letter_index >= letter_array.length || letter_index < 0){
+        text_array.push(0);
+      }
+      else{
+        if(letter_array[letter_index][index] == "0"){
+          text_array.push(0);
+        }
+        else{
+          text_array.push(1);
+        }
+      }
+    }
+  }
+  return text_array;
+}
