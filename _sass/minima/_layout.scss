@@ -277,7 +277,7 @@
 .animation-background {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
+  //flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -292,12 +292,14 @@
   align-items: center;
   width: min(40rem, 75vw);
   height: min(12rem, 22.5vw);
+  background-color: #FFF;
 }
 
 .stagger-visualizer div {
   width: min(.8rem, 1.5vw);
   height: min(.8rem, 1.5vw);
-  border: 2px solid #343a40;
+  border: solid #343a40;
+  border-width: min(2px, 0.2vw);
   background-color: #343a40;
 }
 
@@ -386,7 +388,7 @@
   
 .timeline-label {
   position: absolute;
-  width: 22%;
+  width: 20%;
   color: #343a40;
   font-weight: 800;
   font-size: 2.5vw;
@@ -415,7 +417,7 @@
 .timeline-date {
   position: absolute;
   color: #343a40;
-  width: 22%;
+  width: 20%;
   font-weight: 800;
   font-size: 2.5vw;
   left: 0px;

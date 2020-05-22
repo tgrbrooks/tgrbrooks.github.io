@@ -1,3 +1,6 @@
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+console.log(vw)
+
 // Get all the events and create individual animations for them
 for (let i = 1; i <= 6; i++){
   var event_name = 'event'+i;
@@ -30,8 +33,8 @@ for (let i = 1; i <= 6; i++){
   // Expand the event window outwards, remove the left and right borders
   .add({
     targets: event_element,
-    scaleX: [1, 30],
-    scaleY: [1, 20],
+    scaleX: [1, 0.45*vw/20.],
+    scaleY: [1, 0.3*vw/20.],
     borderTopWidth: ['5px', '1px'],
     borderBottomWidth: ['5px', '1px'],
     borderLeftWidth: ['5px', '0px'],
