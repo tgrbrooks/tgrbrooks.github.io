@@ -1,5 +1,5 @@
-const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-console.log(vw)
+//const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+const vw = document.getElementById("timebkg").offsetWidth
 
 // Get all the events and create individual animations for them
 for (let i = 1; i <= 6; i++){
