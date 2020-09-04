@@ -3,55 +3,67 @@
   <input type="text" name="message" id="user_input">
 </form>
 
-<input type="submit" onclick="showInput();"><br/>
-<label>Your input: </label>
-<p><span id='display'></span></p>
+<!--<input type="submit" value="Generate Cover Letter" onclick="generateCover();"><br/>-->
+<input type="submit" value="Generate Cover Letter" onclick="startWorker();"><br/>
+<input type="submit" value="Finished" onclick="stopWorker();"><br/>
 
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+<div class="content-box">
+  <div class="cover-address">
+    <p class="address-content">The Best Company<br>A Great City<br>A Wonderful Country</p>
+  </div>
+  <div class="cover-date">
+    <p id="date" class="date-content"></p>
+  </div>
+  <div class="cover-start">
+    <p>Dear Recruiter,</p>
+  </div>
+  <div class="letter-content">
+    <p><span id="coverletter"></span></p>
+  </div>
+  <div class="cover-end">
+    <p>Yours Faithfully,<br>Tom Brooks</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.3.0/dist/tf.min.js"></script>
 <script language="JavaScript">
-
+  
+  n =  new Date();
+  y = n.getFullYear();
+  m = n.getMonth() + 1;
+  d = n.getDate();
+  document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
+  
+  /*
   let char2idx = new Map([
     [" ", 0],
-    ["-", 1],
-    [".", 2],
-    ["/", 3],
-    ["0", 4],
-    ["1", 5],
-    ["2", 6],
-    ["3", 7],
-    ["4", 8],
-    ["5", 9],
-    ["6", 10],
-    ["7", 11],
-    ["8", 12],
-    ["9", 13],
-    ["=", 14],
-    ["a", 15],
-    ["b", 16],
-    ["c", 17],
-    ["d", 18],
-    ["e", 19],
-    ["f", 20],
-    ["g", 21],
-    ["h", 22],
-    ["i", 23],
-    ["j", 24],
-    ["k", 25],
-    ["l", 26],
-    ["m", 27],
-    ["n", 28],
-    ["o", 29],
-    ["p", 30],
-    ["q", 31],
-    ["r", 32],
-    ["s", 33],
-    ["t", 34],
-    ["u", 35],
-    ["v", 36],
-    ["w", 37],
-    ["x", 38],
-    ["y", 39],
-    ["z", 40]
+    [".", 1],
+    ["a", 2],
+    ["b", 3],
+    ["c", 4],
+    ["d", 5],
+    ["e", 6],
+    ["f", 7],
+    ["g", 8],
+    ["h", 9],
+    ["i", 10],
+    ["j", 11],
+    ["k", 12],
+    ["l", 13],
+    ["m", 14],
+    ["n", 15],
+    ["o", 16],
+    ["p", 17],
+    ["q", 18],
+    ["r", 19],
+    ["s", 20],
+    ["t", 21],
+    ["u", 22],
+    ["v", 23],
+    ["w", 24],
+    ["x", 25],
+    ["y", 26],
+    ["z", 27]
   ])
 
   let idx2char = new Map(Array.from(char2idx, a => a.reverse()))
@@ -63,29 +75,90 @@
       var idx = char2idx.get(ch)
       result.push(idx)
     }
-    console.log(result)
     return tf.tensor1d(result)
   }
 
-  async function showInput() {
-      const model = await tf.loadLayersModel("../assets/models/forwards_model/model.json", strict=false)
-      var text = document.getElementById("user_input").value;
-      var seed = str2Idx(text)
+  async function generateCover() {
+      // Load the model from the configuration file
+      //tf.setBackend('cpu')
+      const model = await tf.loadLayersModel("../assets/models/forwards_model/model.json", strict=true)
+      //model.summary()
+      //model.getWeights()[0].print();
+
+      // Get the starting text from the user input
+      var txt = document.getElementById("user_input").value;
+      txt = "I am writing to apply for the role of "+txt;
+      // Convert into numeric ids
+      var seed = str2Idx(txt)
       seed = seed.expandDims(0)
-      model.resetStates()
+      //console.log(seed.print())
+
+      // Store the generated text in a list
       text_generated = []
-      for (var i = 0; i < 1000; i++) { 
+      var temperature = 1.
+
+      // Reset the internal state of the model
+      model.resetStates()
+
+      // DEBUG: Print output of each layer
+      
+      var layers = model.layers
+      for (var i=0; i < layers.length; i++){
+        var layer = layers[i]
+        var output = layer.apply(seed)
+        seed = output
+        console.log('layer '+i)
+        output.print(true)
+      }
+      
+      
+      for (var i = 0; i < 200; i++) { 
+        // Predict the next character, returns probablity for each possible output
         var prediction = model.predict(seed)
         prediction = prediction.squeeze(0)
+        prediction = prediction.div(temperature)
+        //console.log(prediction.print(true))
+
+        // Choose next char randomly based on probability
         var predicted_id = tf.multinomial(prediction, 1)
+        //console.log(predicted_id.print(true))
         predicted_id = predicted_id.arraySync()
         predicted_id = predicted_id[predicted_id.length-1][0]
+
+        // Set the seed as the predicted char
         seed = tf.tensor([predicted_id])
         seed = seed.expandDims(0)
+
+        // Append to the generated text
         text_generated.push(idx2char.get(predicted_id))
+        //document.getElementById('coverletter').append(idx2char.get(predicted_id));
       }
-      var final_text = text + text_generated.join("")
-      document.getElementById('display').innerHTML = final_text;
+
+      // Combine text and print to screen
+      var final_text = txt + text_generated.join("")
+      document.getElementById('coverletter').innerHTML = final_text;
+  }
+  */
+  var w;
+
+  function startWorker() {
+    if (typeof(Worker) !== "undefined") {
+      if (typeof(w) == "undefined") {
+        w = new Worker("../assets/js/job_worker.js");
+        var txt = document.getElementById("user_input").value;
+        w.postMessage(txt);
+      }
+      w.onmessage = function(event) {
+        document.getElementById("coverletter").append(event.data);
+      };
+    } else {
+      document.getElementById("coverletter").innerHTML = "Sorry! No Web Worker support.";
+    }
+  }
+
+  function stopWorker() {
+    w.terminate();
+    w = undefined;
   }
 
 </script>

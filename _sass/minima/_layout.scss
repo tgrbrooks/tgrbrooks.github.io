@@ -521,6 +521,7 @@
 
 .chart-mask {
   position: absolute;
+  z-index: 1000;
   height: 100px;
   width: 100px;
   color: #FFF;
@@ -589,4 +590,45 @@
   font-weight: bold;
   text-align: center;
   margin-bottom: 5px;
+}
+
+/*
+ * Cover letter
+ */
+
+.content-box{
+  width: 630px;
+  height: 891px;
+  float: center;
+  padding: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.cover-address{
+  width: 100%;
+}
+.address-content{
+  float: right;
+  //display: none;
+}
+.cover-date{
+  width: 100%;
+  float: right;
+}
+.date-content{
+  float: right;
+}
+.cover-start{
+  width: 100%;
+  float: left;
+}
+.letter-content{
+  float: left;
+}
+.cover-end{
+  width: 100%;
+  float: left;
 }
