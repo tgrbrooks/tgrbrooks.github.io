@@ -1,27 +1,42 @@
-<form>
-  <label><b>Enter a Job Title: </b></label>
-  <input type="text" name="message" id="user_input">
-</form>
+<div class="alert alert-warning" role="alert">
+  Warning: Runs MUCH faster in chrome and edge (for the curious, it's because they allow you to use canvas drawing inside web workers which also allows tensorflow to use the WebGL backend rather than the CPU).
+</div>
 
-<!--<input type="submit" value="Generate Cover Letter" onclick="generateCover();"><br/>-->
-<input type="submit" value="Generate Cover Letter" onclick="startWorker();"><br/>
-<input type="submit" value="Finished" onclick="stopWorker();"><br/>
+<!--<div class="cover-input">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Enter:</span>
+    </div>
+    <input type="text" class="form-control" id="user_input" placeholder="Job Title" aria-label="Job Title" aria-describedby="basic-addon1">
+  </div>
+
+  <button type="button" class="btn btn-primary btn-lg" onclick="startWorker();">Generate Cover Letter</button>
+  <button type="button" class="btn btn-secondary btn-lg" onclick="stopWorker();">Stop!</button><br/>
+</div>-->
+
+<div class="input-group">
+  <input type="text" class="form-control" id="user_input" placeholder="Enter Job Title" aria-label="Enter Job Title" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-primary" type="button" onclick="startWorker();">Generate</button>
+    <button class="btn btn-secondary" type="button" onclick="stopWorker();">Stop</button>
+  </div>
+</div>
 
 <div class="content-box">
   <div class="cover-address">
-    <p class="address-content">The Best Company<br>A Great City<br>A Wonderful Country</p>
+    <p id="address" class="address-content"></p>
   </div>
   <div class="cover-date">
     <p id="date" class="date-content"></p>
   </div>
   <div class="cover-start">
-    <p>Dear Recruiter,</p>
+    <p id="coverstart"></p>
   </div>
   <div class="letter-content">
     <p><span id="coverletter"></span></p>
   </div>
   <div class="cover-end">
-    <p>Yours Faithfully,<br>Tom Brooks</p>
+    <p id="coverend"></p>
   </div>
 </div>
 
@@ -32,124 +47,56 @@
   y = n.getFullYear();
   m = n.getMonth() + 1;
   d = n.getDate();
-  document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
   
-  /*
-  let char2idx = new Map([
-    [" ", 0],
-    [".", 1],
-    ["a", 2],
-    ["b", 3],
-    ["c", 4],
-    ["d", 5],
-    ["e", 6],
-    ["f", 7],
-    ["g", 8],
-    ["h", 9],
-    ["i", 10],
-    ["j", 11],
-    ["k", 12],
-    ["l", 13],
-    ["m", 14],
-    ["n", 15],
-    ["o", 16],
-    ["p", 17],
-    ["q", 18],
-    ["r", 19],
-    ["s", 20],
-    ["t", 21],
-    ["u", 22],
-    ["v", 23],
-    ["w", 24],
-    ["x", 25],
-    ["y", 26],
-    ["z", 27]
-  ])
+  var worker;
 
-  let idx2char = new Map(Array.from(char2idx, a => a.reverse()))
-
-  function str2Idx(str) {
-    let result = []
-    for (var i = 0; i < str.length; i++) {
-      var ch = str.toLowerCase().charAt(i)
-      var idx = char2idx.get(ch)
-      result.push(idx)
-    }
-    return tf.tensor1d(result)
-  }
-
-  async function generateCover() {
-      // Load the model from the configuration file
-      //tf.setBackend('cpu')
-      const model = await tf.loadLayersModel("../assets/models/forwards_model/model.json", strict=true)
-      //model.summary()
-      //model.getWeights()[0].print();
-
-      // Get the starting text from the user input
-      var txt = document.getElementById("user_input").value;
-      txt = "I am writing to apply for the role of "+txt;
-      // Convert into numeric ids
-      var seed = str2Idx(txt)
-      seed = seed.expandDims(0)
-      //console.log(seed.print())
-
-      // Store the generated text in a list
-      text_generated = []
-      var temperature = 1.
-
-      // Reset the internal state of the model
-      model.resetStates()
-
-      // DEBUG: Print output of each layer
-      
-      var layers = model.layers
-      for (var i=0; i < layers.length; i++){
-        var layer = layers[i]
-        var output = layer.apply(seed)
-        seed = output
-        console.log('layer '+i)
-        output.print(true)
-      }
-      
-      
-      for (var i = 0; i < 200; i++) { 
-        // Predict the next character, returns probablity for each possible output
-        var prediction = model.predict(seed)
-        prediction = prediction.squeeze(0)
-        prediction = prediction.div(temperature)
-        //console.log(prediction.print(true))
-
-        // Choose next char randomly based on probability
-        var predicted_id = tf.multinomial(prediction, 1)
-        //console.log(predicted_id.print(true))
-        predicted_id = predicted_id.arraySync()
-        predicted_id = predicted_id[predicted_id.length-1][0]
-
-        // Set the seed as the predicted char
-        seed = tf.tensor([predicted_id])
-        seed = seed.expandDims(0)
-
-        // Append to the generated text
-        text_generated.push(idx2char.get(predicted_id))
-        //document.getElementById('coverletter').append(idx2char.get(predicted_id));
-      }
-
-      // Combine text and print to screen
-      var final_text = txt + text_generated.join("")
-      document.getElementById('coverletter').innerHTML = final_text;
-  }
-  */
-  var w;
-
+  // Start the web worker
   function startWorker() {
+    var sentence_count = 0;
+    // Clear everything
+    document.getElementById("address").innerHTML = "The Best Company";
+    document.getElementById("address").appendChild(document.createElement("br"));
+    document.getElementById("address").append("A Great City");
+    document.getElementById("address").appendChild(document.createElement("br"));
+    document.getElementById("address").append("A Wonderful Country");
+    document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
+    document.getElementById("coverstart").innerHTML = "Dear Recruiter,";
+    document.getElementById("coverletter").innerHTML = "";
+    document.getElementById("coverend").innerHTML = "";
+    
     if (typeof(Worker) !== "undefined") {
-      if (typeof(w) == "undefined") {
-        w = new Worker("../assets/js/job_worker.js");
+      if (typeof(worker) == "undefined") {
+        worker = new Worker("../assets/js/job_worker.js");
         var txt = document.getElementById("user_input").value;
-        w.postMessage(txt);
+        worker.postMessage(txt);
+        txt = "I am writing to apply for the role of "+txt+".";
+        document.getElementById("coverletter").append(txt);
       }
-      w.onmessage = function(event) {
-        document.getElementById("coverletter").append(event.data);
+      worker.onmessage = function(event) {
+        if(event.data == " i"){
+          sentence_count += 1;
+          document.getElementById("coverletter").append(".");
+          if(sentence_count > 3){
+            sentence_count = 0;
+            document.getElementById("coverletter").appendChild(document.createElement("br"));
+            document.getElementById("coverletter").appendChild(document.createElement("br"));
+          }
+          else{
+            document.getElementById("coverletter").append(" ");
+          }
+          document.getElementById("coverletter").append("I");
+        }
+        else if(event.data == "Yours Faithfully,"){
+          document.getElementById("coverletter").append(".");
+          document.getElementById("coverend").innerHTML = "Yours Faithfully,";
+          document.getElementById("coverend").appendChild(document.createElement("br"));
+          document.getElementById("coverend").append("Tom Brooks");
+          worker.terminate();
+          worker = undefined;
+        }
+        else{
+          document.getElementById("coverletter").append(event.data);
+        }
       };
     } else {
       document.getElementById("coverletter").innerHTML = "Sorry! No Web Worker support.";
@@ -157,8 +104,12 @@
   }
 
   function stopWorker() {
-    w.terminate();
-    w = undefined;
+    worker.terminate();
+    worker = undefined;
+    document.getElementById("coverletter").append(".");
+    document.getElementById("coverend").innerHTML = "Yours Faithfully,";
+    document.getElementById("coverend").appendChild(document.createElement("br"));
+    document.getElementById("coverend").append("Tom Brooks");
   }
 
 </script>

@@ -77,7 +77,9 @@ async function generateCover(txt) {
     }
     */
     
-    for (var i = 0; i < 200; i++) { 
+    var count = 0;
+    var word = [];
+    for (var i = 0; i < 1500; i++) {
       // Predict the next character, returns probablity for each possible output
       var prediction = model.predict(seed)
       prediction = prediction.squeeze(0)
@@ -95,14 +97,17 @@ async function generateCover(txt) {
       seed = seed.expandDims(0)
 
       // Append to the generated text
-      text_generated.push(idx2char.get(predicted_id))
-      //document.getElementById('coverletter').append(idx2char.get(predicted_id));
-      postMessage(idx2char.get(predicted_id));
+      if(idx2char.get(predicted_id)==" "){
+        var txt = " "+word.join("");
+        postMessage(txt);
+        word = [];
+      }
+      else{
+        word.push(idx2char.get(predicted_id));
+      }
     }
-
-    // Combine text and print to screen
-    //var final_text = txt + text_generated.join("")
-    //document.getElementById('coverletter').innerHTML = final_text;
+    postMessage("Yours Faithfully,");
+    close();
 }
 
 onmessage = function(e) {
