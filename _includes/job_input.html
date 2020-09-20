@@ -2,23 +2,22 @@
   Warning: Runs MUCH faster in chrome and edge (for the curious, it's because they allow you to use canvas drawing inside web workers which also allows tensorflow to use the WebGL backend rather than the CPU).
 </div>
 
-<!--<div class="cover-input">
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Enter:</span>
-    </div>
-    <input type="text" class="form-control" id="user_input" placeholder="Job Title" aria-label="Job Title" aria-describedby="basic-addon1">
-  </div>
-
-  <button type="button" class="btn btn-primary btn-lg" onclick="startWorker();">Generate Cover Letter</button>
-  <button type="button" class="btn btn-secondary btn-lg" onclick="stopWorker();">Stop!</button><br/>
-</div>-->
-
 <div class="input-group">
   <input type="text" class="form-control" id="user_input" placeholder="Enter Job Title" aria-label="Enter Job Title" aria-describedby="basic-addon2">
   <div class="input-group-append">
     <button class="btn btn-primary" type="button" onclick="startWorker();">Generate</button>
     <button class="btn btn-secondary" type="button" onclick="stopWorker();">Stop</button>
+  </div>
+</div>
+
+<div class="cover-toggle">
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-primary active">
+      <input type="radio" name="options" id="model-option1" autocomplete="off" checked> Word Model
+    </label>
+    <label class="btn btn-primary">
+      <input type="radio" name="options" id="model-option2" autocomplete="off"> Char Model
+    </label>
   </div>
 </div>
 
@@ -66,7 +65,13 @@
     
     if (typeof(Worker) !== "undefined") {
       if (typeof(worker) == "undefined") {
-        worker = new Worker("../assets/js/job_worker.js");
+        // Use toggle button to select which model to use
+        if(document.getElementById('model-option2').checked){
+          worker = new Worker("../assets/js/job_worker.js");
+        }
+        else{
+          worker = new Worker("../assets/js/job_word_worker.js");
+        }
         var txt = document.getElementById("user_input").value;
         worker.postMessage(txt);
         txt = "I am writing to apply for the role of "+txt+".";
@@ -85,6 +90,15 @@
             document.getElementById("coverletter").append(" ");
           }
           document.getElementById("coverletter").append("I");
+        }
+        else if(event.data == "."){
+          document.getElementById("coverletter").append(event.data);
+          sentence_count += 1;
+          if(sentence_count > 3){
+            sentence_count = 0;
+            document.getElementById("coverletter").appendChild(document.createElement("br"));
+            document.getElementById("coverletter").appendChild(document.createElement("br"));
+          }
         }
         else if(event.data == "Yours Faithfully,"){
           document.getElementById("coverletter").append(".");
