@@ -4,3 +4,6 @@
 [submodule "wiki"]
 	path = wiki
 	url = https://github.com/tgrbrooks/wiki.git
+[submodule "CheeseQuest"]
+	path = CheeseQuest
+	url = https://github.com/tgrbrooks/CheeseQuest
